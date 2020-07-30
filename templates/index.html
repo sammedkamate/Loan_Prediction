@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Loan Prediction</title>
+
+    <!-- Icons font CSS-->
+    <link href="{{ url_for('static', filename='vendor/mdi-font/css/material-design-iconic-font.min.css') }}"rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}"rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='vendor/datepicker/daterangepicker.css') }}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{{ url_for('static', filename='css/main.css') }}"rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title" style="text-align:center">Loan Prediction</h2>
+                    <form action="{{ url_for('predict')}}" method="POST">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="Gender">Gender</label>
+                                    <select id="Gender" name="Gender">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="Married">Marital Status</label>
+                                    <select id="Married" name="Married">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">no</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="Dependents">Dependents</label>
+                                    <select id="Dependents" name="Dependents">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3+</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="Education">Education</label>
+                                    <select id="Education" name="Education">
+                                        <option value="Graduate">Graduate</option>
+                                        <option value="Not Graduate">Not Graduate</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="Self_Employed">Self_Employed</label>
+                                    <select id="Self_Employed" name="Self_Employed">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">no</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="ApplicantIncome">ApplicantIncome</label>
+                                    <input type="text" name="ApplicantIncome" required="required" style="background-color:AliceBlue;"/> 
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="CoapplicantIncome">CoapplicantIncome</label>
+                                    <input type="text" name="CoapplicantIncome" required="required" style="background-color:AliceBlue;"/>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                     <label for="LoanAmount">LoanAmount</label>
+                                     <input type="text" name="LoanAmount" required="required" style="background-color:AliceBlue;"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="Loan_Amount_Term">Loan_Amount_Term</label>
+                                    <input type="text" name="Loan_Amount_Term" placeholder="In Days" required="required" style="background-color:AliceBlue;"/>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="Credit_History">Credit_History</label>
+                                    <select id="Credit_History" name="Credit_History">
+                                        <option value="1">1</option>
+                                        <option value="0">0</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>                              
+                        
+                        <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <label for="Property_Area">Property_Area</label>
+                                <select id="Property_Area" name="Property_Area">
+                                    <option value="Urban">Urban</option>
+                                    <option value="Semiurban">Semi-Urban</option>
+                                    <option value="Rural">Rural</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                        </div>
+                    </form>
+                    <h2 class="title" style="text-align:center"><br> {{ result }} </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src= "{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+    <!-- Vendor JS-->
+    <script src="{{ url_for('static', filename='vendor/select2/select2.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/datepicker/moment.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/datepicker/daterangepicker.js') }}"></script>
+
+    <!-- Main JS-->
+    <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->
